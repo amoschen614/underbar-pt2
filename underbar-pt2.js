@@ -106,6 +106,14 @@ const delay = function(func, wait) {
 const shuffle = function(arr) {
   // Hint: See http://bost.ocks.org/mike/shuffle/ for an in-depth explanation of the
   // Fisher-Yates Shuffle
+  let arrCopy = arr.slice();
+  for (let shuffledLength = 1; shuffledLength <= arrCopy.length; shuffledLength++) {
+    const i = Math.floor(Math.random() * (arrCopy.length - shuffledLength));
+    const tmp = arrCopy[arrCopy.length - shuffledLength];
+    arrCopy[arrCopy.length - shuffledLength] = arrCopy[i];
+    arrCopy[i] = tmp;
+  }
+  return arrCopy;
 };
 
 module.exports = {
