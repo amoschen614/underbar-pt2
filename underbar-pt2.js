@@ -73,7 +73,14 @@ const once = function(func) {
 // instead if possible.
 const memoize = function(func) {
   // Hint: look up Function.apply
-  // Your code here
+  let resultsMap = {};
+  return function() {
+    const argsStr = JSON.stringify(arguments);
+    if (!resultsMap.hasOwnProperty(argsStr)) {
+      resultsMap[argsStr] = func.apply(this, arguments);
+    }
+    return resultsMap[argsStr];
+  }
 };
 
 // Delays a function for the given number of milliseconds, and then calls
