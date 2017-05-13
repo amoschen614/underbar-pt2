@@ -52,6 +52,15 @@ const defaults = function(obj) {
 // should return the previously returned value.
 const once = function(func) {
   // Hint: you're going to need to return another function that you create inside this function.
+  let hasBeenCalled = false;
+  let result;
+  return function() {
+    if (!hasBeenCalled) {
+      result = func.apply(this, arguments);
+      hasBeenCalled = true;
+    }
+    return result;
+  }
 };
 
 // Memorize an expensive function's results by storing them. You may assume
