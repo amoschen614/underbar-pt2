@@ -29,7 +29,14 @@ const extend = function(obj) {
 // Like extend, but doesn't ever overwrite a key that already
 // exists in obj
 const defaults = function(obj) {
-  // Your code here
+  each(Array.from(arguments).slice(1), nextObj => {
+    each(nextObj, (val, key) => {
+      if (!obj.hasOwnProperty(key)) {
+        obj[key] = val;
+      }
+    });
+  });
+  return obj;
 };
 
 
