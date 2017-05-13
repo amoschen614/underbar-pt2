@@ -92,6 +92,10 @@ const memoize = function(func) {
 const delay = function(func, wait) {
   // Hint: delay things with the global function setTimeout()
   // Hint: look up Function.apply
+  const argsArr = Array.prototype.slice.call(arguments, 2)
+  setTimeout(function() {
+    func.apply(Function, argsArr);
+  }, wait);
 };
 
 // Randomizes the order of an array's contents.
